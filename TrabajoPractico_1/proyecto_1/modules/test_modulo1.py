@@ -76,5 +76,6 @@ class TestJuegoGuerra(unittest.TestCase):
         
         self.assertTrue(self.juego_7.empate)
         self.assertTrue(self.juego_8.empate)
-    
-    
+
+if __name__ == '__main__':
+    unittest.main()
