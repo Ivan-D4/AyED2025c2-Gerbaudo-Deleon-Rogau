@@ -1,6 +1,6 @@
 # mazo.py
 
-from modulo1 import ListaDobleEnlazada  # Importa la clase ListaDobleEnlazada
+from modulos import ListaDobleEnlazada  # Importa la clase ListaDobleEnlazada
 
 class DequeEmptyError(Exception):
     pass  # Define una excepción personalizada para cuando el mazo está vacío
