@@ -1,6 +1,6 @@
 # mazo.py
 
-from modulos import ListaDobleEnlazada  # Importa la clase ListaDobleEnlazada
+from modules.LDE import ListaDobleEnlazada  # Importa la clase ListaDobleEnlazada
 
 class DequeEmptyError(Exception):
     pass  # Define una excepción personalizada para cuando el mazo está vacío
@@ -50,6 +50,19 @@ class Mazo:
             self._cartas.cabeza = None  # Si la lista queda vacía, también actualiza la cabeza
         self._cartas.tamanio -= 1  # Decrementa el tamaño del mazo
         return dato  # Devuelve la carta eliminada
+    
+    def poner_carta_arriba(self, carta):
+        self.agregar_al_inicio(carta)  # Agrega una carta al inicio del mazo (parte superior)
+
+    def poner_carta_abajo(self, carta):
+        self.agregar_al_final(carta)  # Agrega una carta al final del mazo (parte inferior)
+    
+    def sacar_carta_arriba(self, mostrar=False):
+        carta = self.eliminar_del_inicio()  # Elimina y obtiene la carta del inicio del mazo
+        if mostrar:
+            print(f'Sacando carta: {carta}')  # Muestra la carta si el parámetro mostrar es True
+        return carta  # Devuelve la carta sacada
+
     def eliminar(self, posicion):
         if self.esta_vacio():
             raise DequeEmptyError("El mazo está vacío")  # Lanza una excepción si el mazo está vacío
@@ -68,10 +81,13 @@ class Mazo:
             actual.siguiente.anterior = actual.anterior
             self._cartas.tamanio -= 1  # Decrementa el tamaño del mazo
             return dato  # Devuelve la carta eliminada
+        
     def esta_vacio(self):
         return self._cartas.tamanio == 0  # Verifica si el mazo está vacío
+    
     def __len__(self):
         return self._cartas.tamanio  # Devuelve el tamaño del mazo
+    
     def __str__(self):
         cartas = []
         actual = self._cartas.cabeza

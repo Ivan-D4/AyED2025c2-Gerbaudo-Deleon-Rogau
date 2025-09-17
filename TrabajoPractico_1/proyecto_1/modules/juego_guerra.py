@@ -1,12 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Aug 11 09:32:57 2022
 
-@author: Cátedra de Algoritmos y Estructura de Datos
-"""
+#----------------------------------------------------------------------------------------------------------------------------------
+#jUEGO DE LA GUERRA
 
-from mazo import Mazo, DequeEmptyError
-from carta import Carta
+from modules.mazo import Mazo, DequeEmptyError
+from modules.carta import Carta
 import random
 
 N_TURNOS = 10000
@@ -192,3 +189,4 @@ if __name__ == "__main__":
     juego.iniciar_juego()
     
     print(n)
+

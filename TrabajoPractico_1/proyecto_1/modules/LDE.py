@@ -1,68 +1,71 @@
 # módulo para organizar funciones o clases utilizadas en nuestro proyecto
 # Crear tantos módulos como sea necesario para organizar el código
 
-class nodo:
+class Nodo:
     #Define dato como nodo
     def __init__(self, dato):
         self.dato = dato
         self.siguiente = None
         self.anterior = None
 #Crea la lista
-class listaDobleEnlazada:
+class ListaDobleEnlazada:
     def __init__(self):
         self.cabeza = None
         self.cola = None
         self.tamanio = 0
 
-def agregar_al_inicio(self,dato):
-    # Crea un nuevo nodo
-    nuevo_nodo = nodo(dato)
-    if self.cabeza is None:
-       self.cabeza = nuevo_nodo # Crea la cabeza
-       self.cola = nuevo_nodo # Crea la cola
-    else: # Si la lista no está vacía
-        nuevo_nodo.siguiente = self.cabeza
-        self.cabeza.anterior = nuevo_nodo # Establece el anterior de la cabeza
-        self.cabeza = nuevo_nodo # Actualiza la cabeza
-    self.tamanio += 1
+    def agregar_al_inicio(self, dato):
+        nuevo_nodo = Nodo(dato)
+        if self.cabeza is None:
+            self.cabeza = nuevo_nodo
+            self.cola = nuevo_nodo
+        else:
+            nuevo_nodo.siguiente = self.cabeza
+            self.cabeza.anterior = nuevo_nodo
+            self.cabeza = nuevo_nodo
+        self.cabeza.anterior = None
+        self.tamanio += 1
 
-    def agregar_al_final(self,dato):
-     nuevo_nodo = nodo(dato)
-     if self.cabeza is None: # Si la lista está vacía
-       self.cabeza = nuevo_nodo 
-       self.cola = nuevo_nodo 
-     else: 
-        nuevo_nodo.anterior = self.cola # Establece el anterior de nuevo_nodo
-        self.cola.siguiente = nuevo_nodo # Establece el siguiente de la cola
-        self.cola = nuevo_nodo # Actualiza la cola
-    self.tamanio += 1
+    def agregar_al_final(self, dato):
+        nuevo_nodo = Nodo(dato)
+        if self.cabeza is None:
+            self.cabeza = nuevo_nodo
+            self.cola = nuevo_nodo
+        else:
+            nuevo_nodo.anterior = self.cola
+            self.cola.siguiente = nuevo_nodo
+            self.cola = nuevo_nodo
+        self.tamanio += 1  # <-- Siempre aumenta el tamaño
 
 
-    def insertar(self,dato,posicion):
+    def insertar(self, dato, posicion):
         if posicion < 0 or posicion > self.tamanio:
             raise Exception("Posición inválida")
         if posicion == 0:
-            self.agregar_al_inicio(dato)
+            self.agregar_al_inicio(dato)            
         elif posicion == self.tamanio:
             self.agregar_al_final(dato)
         else:
-            nuevo_nodo = nodo(dato)
+            nuevo_nodo = Nodo(dato)
             actual = self.cabeza
             for _ in range(posicion):
                 actual = actual.siguiente
-
             nuevo_nodo.anterior = actual.anterior
             nuevo_nodo.siguiente = actual
             actual.anterior.siguiente = nuevo_nodo
             actual.anterior = nuevo_nodo
-            self.tamanio += 1
+            self.tamanio += 1  # Solo aquí
     
     def copiar(self):
-        copia = listaDobleEnlazada()
+        copia = ListaDobleEnlazada()
         actual = self.cabeza
         while actual is not None:
             copia.agregar_al_final(actual.dato)
             actual = actual.siguiente
+        if copia.cabeza:
+           copia.cabeza.anterior = None
+        if copia.cola:
+           copia.cola.siguiente = None
         return copia
 
     def extraer(self, posicion=None):
@@ -87,7 +90,7 @@ def agregar_al_inicio(self,dato):
             if self.cola:
                 self.cola.siguiente = None
             else:
-                self.cabeza = None
+                 self.cabeza = None
         # Extraer de posición intermedia
         else:
             actual = self.cabeza
@@ -97,16 +100,23 @@ def agregar_al_inicio(self,dato):
             actual.anterior.siguiente = actual.siguiente
             actual.siguiente.anterior = actual.anterior
         self.tamanio -= 1
+    # Si la lista queda vacía, asegúrate de que cabeza y cola sean None
+        if self.tamanio == 0:
+            self.cabeza = None
+            self.cola = None
         return nodo_extraido.dato
     
     def invertir(self):
         actual = self.cabeza
         self.cabeza = self.cola
-        self.cola = actual
+        self.cola = self.cabeza
         while actual is not None:
             actual.anterior, actual.siguiente = actual.siguiente, actual.anterior
             actual = actual.siguiente
-        self.cola.anterior = None
+        if self.cabeza:
+           self.cabeza.anterior = None
+        if self.cola:
+           self.cola.siguiente = None
 
     def esta_vacia(self):
         if self.tamanio == 0:
@@ -114,12 +124,10 @@ def agregar_al_inicio(self,dato):
         return False
 
     def concatenar(self, otra_lista):
-        if not isinstance(otra_lista, listaDobleEnlazada):
+        if not isinstance(otra_lista, ListaDobleEnlazada):
             raise Exception("El argumento debe ser una lista doblemente enlazada")
-
         if otra_lista.esta_vacia():
             return
-
         if self.esta_vacia():
             self.cabeza = otra_lista.cabeza
             self.cola = otra_lista.cola
@@ -127,19 +135,27 @@ def agregar_al_inicio(self,dato):
             self.cola.siguiente = otra_lista.cabeza
             otra_lista.cabeza.anterior = self.cola
             self.cola = otra_lista.cola
-
         self.tamanio += otra_lista.tamanio
+        if self.cabeza:
+            self.cabeza.anterior = None
+        if self.cola:
+           self.cola.siguiente = None
 
-    def _len_(self):
+    def __len__(self):
         return self.tamanio
-
-    def _add_(self, otra_lista):
+    
+    def __add__(self, otra_lista):
         nueva_lista = self.copiar()
         nueva_lista.concatenar(otra_lista)
+        # --- CORRECCIÓN ---
+        if nueva_lista.cabeza:
+            nueva_lista.cabeza.anterior = None
+        if nueva_lista.cola:
+            nueva_lista.cola.siguiente = None
         return nueva_lista
-
-    def _iter_(self):
+   
+    def __iter__(self):
         actual = self.cabeza
-        for _ in range(self.tamanio):
+        while actual is not None:
             yield actual.dato
             actual = actual.siguiente
