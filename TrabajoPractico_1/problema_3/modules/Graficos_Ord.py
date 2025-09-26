@@ -9,9 +9,6 @@ def medir_tiempos(metodo_ord, tamanos):
     tiempos_ord_selecc = []
 
     for n in tamanos:
-        # datos = []
-        # for _ in range(n):
-        #     datos.append(randint(1, 10000))
         datos = [randint(1, 1000) for _ in range(n)]
 
         inicio = time.perf_counter()
@@ -47,5 +44,3 @@ if __name__ == '__main__':
    graficar_tiempos([ordenamiento_quicksort])
    graficar_tiempos([ordenamiento_radix])
    graficar_tiempos([ordenamiento_burbuja,ordenamiento_quicksort,ordenamiento_radix])
-
-

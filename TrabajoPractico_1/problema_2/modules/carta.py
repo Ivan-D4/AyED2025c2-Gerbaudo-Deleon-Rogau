@@ -7,11 +7,11 @@ Created on Tue Aug  9 16:51:54 2022
 
 class Carta:
     
-    def __init__(self, valor='', palo=''):
+    def __init__(self, valor, palo=''):
         self.valor = valor
         self.palo = palo
-        self.visible:bool = False
-        
+        self.visible:bool = True
+    
     @property
     def visible(self):
         return self._visible
@@ -42,17 +42,14 @@ class Carta:
             idx = valores.index(self.valor)
             return (11 + idx)
         return int(self.valor)            
-            
-        
+              
     def __gt__(self, otra):
         """2 cartas deben compararse por su valor numérico"""
         return self._valor_numerico() > otra._valor_numerico()
         
     def __str__(self):
-        if self.visible == False:
-            return "-X"
-        else:
-            return self.valor + self.palo
+        # Mostrar siempre el valor y palo, ignorando el atributo visible
+        return f"{self.valor}{self.palo}"
     
     def __repr__(self):
         return str(self)
