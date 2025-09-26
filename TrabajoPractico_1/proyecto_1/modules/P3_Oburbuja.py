@@ -41,7 +41,3 @@ if __name__ == '__main__':
          datos.append(randint(M, N)) 
     datos = ordenamiento_burbuja(datos)
     print(datos)
-
-
-
-

@@ -44,5 +44,3 @@ if __name__ == '__main__':
    graficar_tiempos([ordenamiento_quicksort])
    graficar_tiempos([ordenamiento_radix])
    graficar_tiempos([ordenamiento_burbuja,ordenamiento_quicksort,ordenamiento_radix])
-
-
