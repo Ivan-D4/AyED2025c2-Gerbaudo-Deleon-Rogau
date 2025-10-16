@@ -1,13 +1,22 @@
-# 🐍Nombre del proyecto (darle un nombre significativo) 
+# TAD Lista doblemente enlazada
 
 Breve descripción del proyecto:
 
-Ejemplo: “Este es un script en el que se comparan algoritmos de ordenamiento. Permite [describir funcionalidades principales].
+A partir de unas especificaciones logicas se implemento el TAD listas doblemente enlazadas, para poder crear una grafica de (n) cantidad de elementos sobre tiempo de ejecucion de los metodos __len__(), invertir() y copiar() para comparar su eficiencia. 
 
 ---
 ## 🏗Arquitectura General
 
-Explica brevemente cómo está organizado el código (funciones y/o clases)
+LDE.py
+Clase Nodo: Representa un nodo de la lista doblemente enlazada, con referencias al dato, al siguiente y al anterior nodo.
+Clase ListaDobleEnlazada: Implementa la estructura de lista doblemente enlazada y sus operaciones principales:
+Métodos para agregar al inicio/final, insertar en posición, copiar, extraer, invertir, concatenar, verificar si está vacía, obtener longitud, sumar listas y recorrer la lista.
+Todos los métodos están encapsulados en la clase, no hay funciones sueltas.
+
+Graficas_LDE.py
+Contiene funciones para medir el tiempo de ejecución de operaciones sobre la lista doblemente enlazada:
+medir_tiempos_len, medir_tiempos_copia, medir_tiempos_invertir: Miden el tiempo de las operaciones len, copiar e invertir respectivamente.
+graficar_tiempos: Genera y muestra una gráfica comparando los tiempos de las operaciones anteriores.
 
 Las gráficas de los resultados están disponible en la carpeta [data](./data) del proyecto.
 
@@ -36,8 +45,9 @@ El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
 ---
 ## 🙎‍♀️🙎‍♂️Autores
 
-- Apellido y Nombre del primer integrante
-- Apellido y Nombre del primer integrante
+- Sabina Gerbaudo
+- Ivan Nicolas Deleon
+- Virginia Isabel Rogau
 
 ---
 

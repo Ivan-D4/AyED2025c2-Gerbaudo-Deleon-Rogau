@@ -1,15 +1,20 @@
-# 🐍Nombre del proyecto (darle un nombre significativo) 
+# Juego de Cartas (Guerra)
 
 Breve descripción del proyecto:
 
-Ejemplo: “Este es un script en el que se comparan algoritmos de ordenamiento. Permite [describir funcionalidades principales].
+Se implementa el TAD mazo a Python utilizando la clase ListaDoblementeEnlazada creada previamente, para poder recrear una partida del juego de cartas "Guerra" entre dos personas.
 
 ---
 ## 🏗Arquitectura General
 
-Explica brevemente cómo está organizado el código (funciones y/o clases)
+Clase DequeEmptyError: Excepción personalizada que se lanza cuando se intenta sacar una carta de un mazo vacío.
+Clase Mazo: Representa un mazo de cartas usando una lista doblemente enlazada (ListaDobleEnlazada).
+Método __init__: Inicializa el mazo vacío.
+Método poner_carta_arriba(carta): Agrega una carta al inicio del mazo.
+Método poner_carta_abajo(carta): Agrega una carta al final del mazo.
+Método sacar_carta_arriba(mostrar=False): Quita y devuelve la carta del inicio del mazo, mostrando un mensaje si se indica.
+Método __len__: Devuelve la cantidad de cartas en el mazo.
 
-Las gráficas de los resultados están disponible en la carpeta [data](./data) del proyecto.
 
 El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
 
@@ -36,9 +41,9 @@ El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
 ---
 ## 🙎‍♀️🙎‍♂️Autores
 
-- Apellido y Nombre del primer integrante
-- Apellido y Nombre del primer integrante
-
+- Sabina Gerbaudo
+- Ivan Nicolas Deleon
+- Virginia Isabel Rogau
 ---
 
 > **Consejo**: Mantén el README **actualizado** conforme evoluciona el proyecto, y elimina (o añade) secciones según necesites. Esta plantilla es sólo un punto de partida general.
