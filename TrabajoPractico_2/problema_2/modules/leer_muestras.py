@@ -2,12 +2,18 @@
 # main.py
 
 from database import Temperaturas_DB
+import os
 
 def main():
+    print("Initializing Temperature Database...")
     db = Temperaturas_DB()
     
     # Load temperature data from file
-    db.cargar_muestras_desde_archivo('muestras.txt')
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(current_dir, 'muestras.txt')
+    print(f"Loading temperature data from {file_path}...")
+    db.cargar_muestras_desde_archivo(file_path)
+    print(f"Successfully loaded {db.cantidad_muestras()} temperature records.")
     
     while True:
         print("\nTemperature Database Menu:")

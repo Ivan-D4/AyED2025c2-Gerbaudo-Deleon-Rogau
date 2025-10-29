@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Node:
     def __init__(self, key, value):
         self.key = key
@@ -6,22 +8,46 @@ class Node:
         self.right = None
         self.height = 1
 class AVLTree:
+    @staticmethod
+    def _convert_date(date_str):
+        """Convierte una fecha string en formato dd/mm/yyyy a objeto datetime"""
+        return datetime.strptime(date_str, '%d/%m/%Y')
+
+    @staticmethod
+    def _compare_dates(date1_str, date2_str):
+        """Compara dos fechas en formato string"""
+        date1 = AVLTree._convert_date(date1_str)
+        date2 = AVLTree._convert_date(date2_str)
+        if date1 < date2:
+            return -1
+        elif date1 > date2:
+            return 1
+        return 0
+
     def get_records_in_range(self, fecha1, fecha2):
         """
         Devuelve una lista de tuplas (fecha, temperatura) para todas las fechas en el rango [fecha1, fecha2], ordenadas por fecha.
         """
         result = []
         self._inorder_range(self.root, fecha1, fecha2, result)
-        return result
+        return sorted(result, key=lambda x: self._convert_date(x[0]))
 
     def _inorder_range(self, node, fecha1, fecha2, result):
+        """Recorre el árbol en orden y recolecta los registros en el rango [fecha1, fecha2]"""
         if not node:
             return
-        if fecha1 < node.key:
+            
+        # Si la fecha actual es mayor que fecha1, exploramos el subárbol izquierdo
+        if self._compare_dates(fecha1, node.key) < 0:
             self._inorder_range(node.left, fecha1, fecha2, result)
-        if fecha1 <= node.key <= fecha2:
+            
+        # Si la fecha actual está en el rango [fecha1, fecha2], la agregamos
+        if (self._compare_dates(fecha1, node.key) <= 0 and 
+            self._compare_dates(node.key, fecha2) <= 0):
             result.append((node.key, node.value))
-        if node.key < fecha2:
+            
+        # Si la fecha actual es menor que fecha2, exploramos el subárbol derecho
+        if self._compare_dates(node.key, fecha2) < 0:
             self._inorder_range(node.right, fecha1, fecha2, result)
 
     def __init__(self):
@@ -37,6 +63,28 @@ class AVLTree:
     def search(self, key):
         node = self._search(self.root, key)
         return node.value if node else None
+
+    def max_in_range(self, fecha1, fecha2):
+        """Encuentra la temperatura máxima en un rango de fechas"""
+        result = []
+        self._inorder_range(self.root, fecha1, fecha2, result)
+        return max(result, key=lambda x: x[1])[1] if result else None
+
+    def min_in_range(self, fecha1, fecha2):
+        """Encuentra la temperatura mínima en un rango de fechas"""
+        result = []
+        self._inorder_range(self.root, fecha1, fecha2, result)
+        return min(result, key=lambda x: x[1])[1] if result else None
+
+    def extreme_in_range(self, fecha1, fecha2):
+        """Encuentra las temperaturas mínima y máxima en un rango de fechas"""
+        result = []
+        self._inorder_range(self.root, fecha1, fecha2, result)
+        if not result:
+            return None, None
+        min_temp = min(result, key=lambda x: x[1])[1]
+        max_temp = max(result, key=lambda x: x[1])[1]
+        return min_temp, max_temp
 
     # Métodos internos recursivos
     def _insert(self, root, key, value):
