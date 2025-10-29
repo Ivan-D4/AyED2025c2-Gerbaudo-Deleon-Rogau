@@ -1,8 +1,8 @@
-# 🐍Nombre del proyecto (darle un nombre significativo) 
+# 🐍 Sala de emergencias
 
 Breve descripción del proyecto:
 
-Ejemplo: “Este es un script en el que se comparan algoritmos de ordenamiento. Permite [describir funcionalidades principales].
+"En el presente código se utilizan estructuras de datos jerárquicas (montículo binario) para reolver el sistema de atención de una sala médica"
 
 ---
 ## 🏗Arquitectura General
