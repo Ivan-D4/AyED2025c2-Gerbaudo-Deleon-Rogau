@@ -20,7 +20,6 @@ El presente código cuenta, en la carpeta modules, con:
    
    -Clase salita: Simula el ambiente de una sala de emergencias utiliza todas las clases anteriores para su funcionamiento. 
 
-Las gráficas de los resultados están disponible en la carpeta [data](./data) del proyecto.
 
 El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
 
