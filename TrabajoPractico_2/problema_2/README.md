@@ -38,7 +38,7 @@ El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
 
 - Deleon Iván
 - Gerbaudo Sabina
-- Rogau Victoria Isabela
+- Rogau Virginia Isabel
 
 ---
 
