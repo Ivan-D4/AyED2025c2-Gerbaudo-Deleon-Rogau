@@ -20,8 +20,6 @@ El código, en la carpeta modules, cuenta con:
    
    -Función Prim: Conecta todos los vertices del grafo con el menor costo o ponderación posibles. Aplicado al problema encuentra la ruta más optima para el envio de los mensajes.
 
-Las gráficas de los resultados están disponible en la carpeta [data](./data) del proyecto.
-
 El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
 
 ---
