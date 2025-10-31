@@ -8,11 +8,16 @@ Breve descripción del proyecto:
 ## 🏗Arquitectura General
 
 El presente código cuenta, en la carpeta modules, con:
+
    -Clase Cola_de_prioridad: Se encarga de recibir los datos de los pacientes y evalúar su porioridad. Por cada paciente ingresado elimina el primero en la cola de espera. Cuenta con funciones fundamentales para realizar este procedimiento como:
+   
       -Encolar: Añade un elemento al montículo.
       -Desencolar:Extrae el elemento de mayor prioridad del montículo.
+      
    -Clase Montículo_binario: Recibe los datos de la cola de prioridad y organiza según el nivel determinado por la misma. En este caso se utilizó un monticulo mínimo, el cual toma al elemento de menor valor como el de mayor prioridad. Una de las funciones que permite dicha actividad es la de eliminarMin, la cual se encarga de eliminar el elemento en la raíz del montículo; es decir atender al paciente de mayor prioridad.
+   
    -Clase paciente: Se encarga de crear los pacientes (nombre y apellido), nivel de riesgo y hora de llegada, todos aleatorios. Los organiza en una cadena de texto, y compara su hora de llegada o nivel de riesgo según corresponda. 
+   
    -Clase salita: Simula el ambiente de una sala de emergencias utiliza todas las clases anteriores para su funcionamiento. 
 
 Las gráficas de los resultados están disponible en la carpeta [data](./data) del proyecto.
