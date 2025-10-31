@@ -1,8 +1,8 @@
-# 🐍Nombre del proyecto (darle un nombre significativo) 
+# 🐍 Temperaturas_DB
 
 Breve descripción del proyecto:
 
-Ejemplo: “Este es un script en el que se comparan algoritmos de ordenamiento. Permite [describir funcionalidades principales].
+“El código presentado busca optimizar la consulta, comparación, registro y odificación  de una base de datos de temperaturas. Internamente se implenta un árbol AVL. "
 
 ---
 ## 🏗Arquitectura General

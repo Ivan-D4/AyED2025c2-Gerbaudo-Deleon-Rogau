@@ -1,16 +1,16 @@
-from datetime import datetime
+from datetime import datetime # Importa el módulo datetime para manejar fechas
 
-class Node:
-    def __init__(self, key, value):
-        self.key = key
+class Node: # Nodo del árbol AVL
+    def __init__(self, key, value): # Inicializa un nodo con clave, valor, hijos y altura
+        self.key = key 
         self.value = value
         self.left = None
         self.right = None
         self.height = 1
-class AVLTree:
-    @staticmethod
+class AVLTree: # Árbol AVL
+    @staticmethod 
     def _convert_date(date_str):
-        """Convierte una fecha string en formato dd/mm/yyyy a objeto datetime"""
+        """Convierte una fecha en formato string 'dd/mm/yyyy' a un objeto datetime"""
         return datetime.strptime(date_str, '%d/%m/%Y')
 
     @staticmethod
@@ -87,7 +87,7 @@ class AVLTree:
         return min_temp, max_temp
 
     # Métodos internos recursivos
-    def _insert(self, root, key, value):
+    def _insert(self, root, key, value): # Inserta un nodo y mantiene el equilibrio del árbol
         if not root:
             return Node(key, value)
         elif key < root.key:
@@ -101,7 +101,7 @@ class AVLTree:
         root.height = 1 + max(self.get_height(root.left), self.get_height(root.right))
         balance = self.get_balance(root)
 
-        if balance > 1 and key < root.left.key:
+        if balance > 1 and key < root.left.key: 
             return self.right_rotate(root)
         if balance < -1 and key > root.right.key:
             return self.left_rotate(root)
@@ -114,7 +114,7 @@ class AVLTree:
 
         return root
 
-    def _delete(self, root, key):
+    def _delete(self, root, key): # Elimina un nodo y mantiene el equilibrio del árbol
         if not root:
             return root
         elif key < root.key:
@@ -146,24 +146,24 @@ class AVLTree:
 
         return root
 
-    def _search(self, root, key):
+    def _search(self, root, key): # Busca un nodo por clave
         if not root or root.key == key:
             return root
         if key < root.key:
             return self._search(root.left, key)
         return self._search(root.right, key)
 
-    def get_height(self, root):
+    def get_height(self, root): # Obtiene la altura de un nodo
         if not root:
             return 0
         return root.height
 
-    def get_balance(self, root):
+    def get_balance(self, root): # Obtiene el factor de equilibrio de un nodo
         if not root:
             return 0
         return self.get_height(root.left) - self.get_height(root.right)
 
-    def left_rotate(self, z):
+    def left_rotate(self, z): # Realiza una rotación izquierda
         y = z.right
         T2 = y.left
         y.left = z
@@ -172,7 +172,7 @@ class AVLTree:
         y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
         return y
 
-    def right_rotate(self, z):
+    def right_rotate(self, z): # Realiza una rotación derecha
         y = z.left
         T3 = y.right
         y.right = z
@@ -181,7 +181,7 @@ class AVLTree:
         y.height = 1 + max(self.get_height(y.left), self.get_height(y.right))
         return y
 
-    def get_min_value_node(self, root):
+    def get_min_value_node(self, root): # Obtiene el nodo con el valor mínimo en un subárbol
         if root is None or root.left is None:
             return root
         return self.get_min_value_node(root.left)

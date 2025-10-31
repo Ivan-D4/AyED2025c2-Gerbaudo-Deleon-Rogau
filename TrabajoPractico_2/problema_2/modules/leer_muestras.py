@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
 # main.py
 
-from database import Temperaturas_DB
-import os
+from database import Temperaturas_DB # Importa la clase Temperaturas_DB desde el módulo database
+import os # Importa el módulo os para manejar rutas de archivos
 
-def main():
+def main(): # Función principal del programa
     print("Initializing Temperature Database...")
     db = Temperaturas_DB()
-    
-    # Load temperature data from file
+    # Carga las muestras desde el archivo 'muestras.txt' ubicado en el mismo directorio
     current_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(current_dir, 'muestras.txt')
     print(f"Loading temperature data from {file_path}...")
     db.cargar_muestras_desde_archivo(file_path)
     print(f"Successfully loaded {db.cantidad_muestras()} temperature records.")
     
-    while True:
+    while True: 
         print("\nTemperature Database Menu:")
         print("1. Add Temperature")
         print("2. Get Temperature")
@@ -29,7 +28,7 @@ def main():
         
         choice = input("Select an option: ")
         
-        if choice == '1':
+        if choice == '1': 
             fecha = input("Enter date (dd/mm/yyyy): ")
             temperatura = float(input("Enter temperature: "))
             db.guardar_temperatura(temperatura, fecha)
