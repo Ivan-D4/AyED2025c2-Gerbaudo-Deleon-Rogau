@@ -9,6 +9,7 @@ Breve descripción del proyecto:
 
 Explica brevemente cómo está organizado el código (funciones y/o clases)
 El código, en la carpeta modules, cuenta con:
+
    -Aldeas.txt: Archivo provisto, que contiene tuplas con (mensajero, destinatario, distancia entre ambos)
    -Clase cola_de_prioridad: Se encarga, junto con el montículo minimo, de seleccionar la menor distancia(aristas) entre vértices (aldeas).
    -Clase Vértice: Representa cada aldea dentro del grafo. 
