@@ -36,8 +36,9 @@ El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
 ---
 ## 🙎‍♀️🙎‍♂️Autores
 
-- Apellido y Nombre del primer integrante
-- Apellido y Nombre del primer integrante
+- Deleon Iván
+- Gerbaudo Sabina
+- Rogau Victoria Isabela
 
 ---
 
