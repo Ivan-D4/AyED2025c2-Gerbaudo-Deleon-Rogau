@@ -1,32 +1,28 @@
-import heapq
+from .monticulo import MonticuloBinario  # Importa el montículo desde su archivo correspondiente
 
 class ColaPrioridad:
     def __init__(self):
-        self.heap = []
-        self.posiciones = {}
+        self.monticulo = MonticuloBinario()
+        self.elementos = {}  # Diccionario auxiliar para acceso rápido a vértices
 
-    def construir_monticulo(self, lista):
-        self.heap = lista
-        heapq.heapify(self.heap)
-        self._actualizar_posiciones()
+    def construir_monticulo(self, lista):# Construye el montículo a partir de una lista de tuplas (distancia, vertice).
+        self.monticulo.construirMonticulo(lista)
+        # Guardamos referencias para poder verificar pertenencia y actualizar claves
+        self.elementos = {v: d for d, v in lista}
 
-    def esta_vacia(self):
-        return len(self.heap) == 0
-
-    def eliminar_min(self):
-        distancia, vertice = heapq.heappop(self.heap)
-        self._actualizar_posiciones()
+    def eliminar_min(self): #Elimina y devuelve el vértice con menor distancia.
+        distancia, vertice = self.monticulo.eliminarMin()
+        self.elementos.pop(vertice, None)
         return vertice
 
-    def contiene(self, vertice):
-        return any(v == vertice for _, v in self.heap)
+    def contiene(self, vertice):#Verifica si un vértice está en la cola de prioridad.
+        return vertice in self.elementos
+    
+    def decrementar_clave(self, vertice, nueva_distancia):#Actualiza la prioridad (distancia) de un vértice en el montículo.
+       # Reconstruimos el montículo con la nueva distancia
+        self.elementos[vertice] = nueva_distancia
+        lista_actualizada = [(d, v) for v, d in self.elementos.items()]
+        self.monticulo.construirMonticulo(lista_actualizada)
 
-    def decrementar_clave(self, vertice, nuevo_valor):
-        # Eliminar el vértice actual del heap
-        self.heap = [(d, v) for d, v in self.heap if v != vertice]
-        # Agregarlo con nuevo valor
-        heapq.heappush(self.heap, (nuevo_valor, vertice))
-        self._actualizar_posiciones()
-
-    def _actualizar_posiciones(self):
-        self.posiciones = {v: i for i, (d, v) in enumerate(self.heap)}
+    def esta_vacia(self):
+        return self.monticulo.tamanoActual == 0
