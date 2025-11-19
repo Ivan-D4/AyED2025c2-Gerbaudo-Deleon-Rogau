@@ -114,7 +114,7 @@ def cargar_grafo_desde_archivo(nombre_archivo):
 # -------------------- Mostrar Resultados ------------------
 def mostrar_resultados(grafo, arbol, total_distancia):
     aldeas = sorted(grafo.obtenerVertices())
-    print("📜 Lista de aldeas en orden alfabético:")
+    print(" Lista de aldeas en orden alfabético:")
     for aldea in aldeas:
         print(f"- {aldea}")
 
@@ -131,7 +131,7 @@ def mostrar_resultados(grafo, arbol, total_distancia):
             if hijos:
                 print(f"{aldea} envía mensaje a: {', '.join(hijos)}")
 
-    print(f"\n📦 Suma total de distancias recorridas: {total_distancia} leguas")
+    print(f"\n Suma total de distancias recorridas: {total_distancia} leguas")
 
 # -------------------- Ejecución Principal --------------------
 if __name__ == "__main__":
